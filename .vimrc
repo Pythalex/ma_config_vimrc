@@ -14,7 +14,6 @@ Plugin 'gmarik/Vundle.vim'
 " Plugins
 Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
-Bundle 'Valloric/YouCompleteMe'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
@@ -24,6 +23,11 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'arcticicestudio/nord-vim'
+Plugin 'tomasiser/vim-code-dark'
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'nvie/vim-flake8'
+Plugin 'Vimjas/vim-python-pep8-indent'
+Plugin 'PhilRunninger/nerdtree-visual-selection'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,12 +73,8 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let python_highlight_all=1
 syntax on
 
-if has('gui_running')
-  set background=dark
-  colorscheme solarized
-else
-  colorscheme zenburn
-endif
+colorscheme zenburn
+"colorscheme codedark
 
 "NOT WORKING switch dark/light theme with solarized with F5
 "call togglebg#map("<F5>")
@@ -95,3 +95,12 @@ autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 " save with control s
 nmap <c-s> :w<cr>
 imap <c-s> <esc>:w<cr>a
+
+" auto run flake 8 when opening py file
+autocmd BufWritePost *.py call flake8#Flake8()
+set laststatus=2
+
+" powerline
+"python3 from powerline.vim import setup as powerline_setup
+"python3 powerline_setup()
+"python3 del powerline_setup
