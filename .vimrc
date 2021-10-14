@@ -28,6 +28,9 @@ Bundle 'Valloric/YouCompleteMe'
 Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
+Plugin 'tell-k/vim-autopep8'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -53,8 +56,6 @@ nnoremap <space> za
 " pep8 indentation
 " au BufNewFile,BufRead *.py
 "    \ set tabstop=4
-"    \ set softtabstop=4
-"    \ set shiftwidth=4
 "    \ set textwidth=79
 "    \ set expandtab
 "    \ set autoindent
@@ -73,8 +74,12 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let python_highlight_all=1
 syntax on
 
-colorscheme zenburn
-"colorscheme codedark
+"colorscheme zenburn
+colorscheme codedark
+
+"change color of Selected tab
+hi TabLineSel ctermfg=Black ctermbg=Yellow
+
 
 "NOT WORKING switch dark/light theme with solarized with F5
 "call togglebg#map("<F5>")
@@ -104,3 +109,20 @@ set laststatus=2
 "python3 from powerline.vim import setup as powerline_setup
 "python3 powerline_setup()
 "python3 del powerline_setup
+
+" powerline
+"set  rtp+=$HOME/.local/lib/python3.9/site-packages/powerline/bindings/vim/
+"set laststatus=2
+"set t_Co=256
+
+" delete trailing white space
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+
+	" delete when saving python file
+autocmd BufWrite *.py :call DeleteTrailingWS()
+	" delete when using leader (,) + w
+noremap <leader>w :call DeleteTrailingWS()<CR>
