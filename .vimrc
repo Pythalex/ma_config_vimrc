@@ -126,3 +126,12 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 	" delete when using leader (,) + w
 noremap <leader>w :call DeleteTrailingWS()<CR>
+
+" allow bash aliases
+set shellcmdflag=-ic
+
+" find class and open file using grep
+" TODO: make it work
+"function Findclass(classname)
+"	exe 'grep -r . -e "class ' + classname + '"'
+"endfunction
