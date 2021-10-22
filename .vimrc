@@ -31,6 +31,7 @@ Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'tell-k/vim-autopep8'
 "Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
+Plugin 'mhinz/vim-startify'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -135,3 +136,13 @@ set shellcmdflag=-ic
 "function Findclass(classname)
 "	exe 'grep -r . -e "class ' + classname + '"'
 "endfunction
+
+" open nerdtree before startify or else startify won't show up
+autocmd VimEnter *
+	\   if !argc()
+	\ |   Startify
+	\ |   NERDTree
+	\ |   wincmd w
+	\ |   wincmd w
+	\ |   wincmd q
+	\ | endif
