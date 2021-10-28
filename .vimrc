@@ -133,9 +133,14 @@ set shellcmdflag=-ic
 
 " find class and open file using grep
 " TODO: make it work
-"function Findclass(classname)
-"	exe 'grep -r . -e "class ' + classname + '"'
-"endfunction
+func! Findclass()
+	exe "tab split"
+	exe "NERDTreeTabsOpen"
+	let classname = expand("<cword>")
+	let str = "\"class " . classname . "(\"" 
+	exe "grep -rn . -e " . str
+endfunc
+nnoremap <leader>fc :call Findclass()<CR> 
 
 " open nerdtree before startify or else startify won't show up
 autocmd VimEnter *
@@ -146,3 +151,9 @@ autocmd VimEnter *
 	\ |   wincmd w
 	\ |   wincmd q
 	\ | endif
+
+" use F2 to list all classes in file
+noremap <F1> :g/def/ .*
+
+" use F3 to toggle nerdtree on and off
+noremap <F3> :NERDTreeToggle<CR>
