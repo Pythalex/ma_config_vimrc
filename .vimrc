@@ -33,6 +33,9 @@ Plugin 'tell-k/vim-autopep8'
 "Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mhinz/vim-startify'
 
+Plugin 'airblade/vim-gitgutter'
+set updatetime=1000
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 
@@ -152,8 +155,14 @@ autocmd VimEnter *
 	\ |   wincmd q
 	\ | endif
 
+" use F1 to list all functions in file
+noremap <F1> :g/def\ .*<CR>
 " use F2 to list all classes in file
-noremap <F1> :g/def/ .*
+noremap <F2> :g/class\ .*<CR>
 
 " use F3 to toggle nerdtree on and off
 noremap <F3> :NERDTreeToggle<CR>
+
+" display invisible characters
+set list listchars=tab:»\ ,trail:·,nbsp:⚠,precedes:<,extends:>
+" set list listchars=tab:»\ ,trail:·,nbsp:⎵,precedes:<,extends:>
