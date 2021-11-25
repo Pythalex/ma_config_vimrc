@@ -32,7 +32,7 @@ Plugin 'tell-k/vim-autopep8'
 Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mhinz/vim-startify'
-
+Plugin 'tomtom/quickfixsigns_vim'
 Plugin 'airblade/vim-gitgutter'
 set updatetime=1000
 
