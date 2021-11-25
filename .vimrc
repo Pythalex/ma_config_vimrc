@@ -29,7 +29,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'tell-k/vim-autopep8'
-"Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline'
 "Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mhinz/vim-startify'
 
@@ -115,7 +115,7 @@ set laststatus=2
 "python3 del powerline_setup
 
 " powerline
-"set  rtp+=$HOME/.local/lib/python3.9/site-packages/powerline/bindings/vim/
+"set rtp+=$HOME/.local/lib/python2.7/site-packages/powerline/bindings/vim/
 "set laststatus=2
 "set t_Co=256
 
