@@ -24,7 +24,7 @@ Plugin 'tpope/vim-fugitive'
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'tomasiser/vim-code-dark'
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
@@ -71,9 +71,9 @@ nnoremap <space> za
 " default utf 8
 set encoding=utf-8
 
-let g:ycm_autoclose_preview_window_after_completion=1 " quit auto complete window after it is done
+"let g:ycm_autoclose_preview_window_after_completion=1 " quit auto complete window after it is done
 " goto def shortcut
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> 
+"map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> 
 
 let python_highlight_all=1
 syntax on
@@ -134,8 +134,7 @@ noremap <leader>w :call DeleteTrailingWS()<CR>
 " allow bash aliases
 set shellcmdflag=-ic
 
-" find class and open file using grep
-" TODO: make it work
+" find class using grep
 func! Findclass()
 	exe "tab split"
 	exe "NERDTreeTabsOpen"
@@ -144,6 +143,25 @@ func! Findclass()
 	exe "grep -rn . -e " . str
 endfunc
 nnoremap <leader>fc :call Findclass()<CR> 
+
+" find method using grep
+func! Findmethod()
+	exe "tab split"
+	exe "NERDTreeTabsOpen"
+	let classname = expand("<cword>")
+	let str = "\"def " . classname . "(\"" 
+	exe "grep -rn . -e " . str
+endfunc
+nnoremap <leader>fm :call Findmethod()<CR>
+
+" open all files modified since master branch
+func! GitModified()
+	let commit_master = system("git rev-list -n 1 master")
+	let modified_files = system("git diff --name-only HEAD " . commit_master)
+	for file in split(modified_files, "\n")
+		exe "tabnew " . file
+	endfor
+endfunc
 
 " open nerdtree before startify or else startify won't show up
 autocmd VimEnter *
@@ -162,6 +180,9 @@ noremap <F2> :g/class\ .*<CR>
 
 " use F3 to toggle nerdtree on and off
 noremap <F3> :NERDTreeToggle<CR>
+
+" use leader d to open new empty tab
+noremap <leader>d :tabnew<CR>
 
 " display invisible characters
 set list listchars=tab:»\ ,trail:·,nbsp:⚠,precedes:<,extends:>
