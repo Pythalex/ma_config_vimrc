@@ -18,27 +18,28 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree' " Awesome file explorer
 Plugin 'jistr/vim-nerdtree-tabs'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive' " All git commands with 'Git X'
 Plugin 'arcticicestudio/nord-vim'
-Plugin 'tomasiser/vim-code-dark'
+Plugin 'tomasiser/vim-code-dark' " Good color scheme
 Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'tell-k/vim-autopep8'
-Plugin 'vim-airline/vim-airline'
-Plugin 'mhinz/vim-startify'
+Plugin 'vim-airline/vim-airline' " Status bar with cool things
+Plugin 'mhinz/vim-startify' " Startup screen on main buffer when no file is opened
 Plugin 'tomtom/quickfixsigns_vim'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'prabirshrestha/vim-lsp'
-Plugin 'mattn/vim-lsp-settings'
+Plugin 'prabirshrestha/vim-lsp' " Language server protocol
+Plugin 'mattn/vim-lsp-settings' " Easy setup for most common languages
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
-Plugin 'tpope/vim-sleuth'
-Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'tpope/vim-sleuth' " auto detect indentation from file
+Plugin 'jeetsukumaran/vim-buffergator' " (dynamic buffer list)
+Plugin 'tpope/vim-surround' " to change surrounding characters (parenthesis, quotes)
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
