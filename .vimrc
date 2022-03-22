@@ -23,16 +23,13 @@ Plugin 'jistr/vim-nerdtree-tabs'
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
-"  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'tomasiser/vim-code-dark'
-"Bundle 'Valloric/YouCompleteMe'
 Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'tell-k/vim-autopep8'
 Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'mhinz/vim-startify'
 Plugin 'tomtom/quickfixsigns_vim'
 Plugin 'airblade/vim-gitgutter'
@@ -41,6 +38,10 @@ Plugin 'mattn/vim-lsp-settings'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'tpope/vim-sleuth'
+Plugin 'jeetsukumaran/vim-buffergator'
+
+"  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"Bundle 'Valloric/YouCompleteMe'
 
 set updatetime=1000
 
@@ -114,8 +115,8 @@ nmap <c-s> :w<cr>
 imap <c-s> <esc>:w<cr>a
 
 " auto run flake 8 when opening py file
-autocmd BufWritePost *.py call flake8#Flake8()
-set laststatus=2
+"autocmd BufWritePost *.py call flake8#Flake8()
+"set laststatus=2
 
 " powerline
 "python3 from powerline.vim import setup as powerline_setup
@@ -171,16 +172,6 @@ func! GitModified()
 	endfor
 endfunc
 
-" open nerdtree before startify or else startify won't show up
-autocmd VimEnter *
-	\   if !argc()
-	\ |   Startify
-	\ |   NERDTree
-	\ |   wincmd w
-	\ |   wincmd w
-	\ |   wincmd q
-	\ | endif
-
 " use F1 to list all functions in file
 noremap <F1> :g/def\ .*<CR>
 " use F2 to list all classes in file
@@ -201,7 +192,20 @@ highlight GitGutterAdd    guifg=#009900 ctermfg=2
 highlight GitGutterChange guifg=#bbbb00 ctermfg=3
 highlight GitGutterDelete guifg=#ff2222 ctermfg=1
 
-" LSP server setting
+" navigation between buffers
+nnoremap <C-S-Left> :bprev<CR>
+nnoremap <C-S-Right> :bnext<CR>
+
+let g:lsp_settings = {
+\   'pylsp-all': {
+\     'workspace_config': {
+\       'pylsp': {
+\         'configurationSources': ['flake8']
+\       }
+\     }
+\   },
+\}
+
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
     setlocal signcolumn=yes
@@ -225,22 +229,23 @@ function! s:on_lsp_buffer_enabled() abort
     " refer to doc to add more commands
 endfunction
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+" Buffergator settings
+let g:buffergator_viewport_split_policy = "B" " horizontal bottom
+let g:buffergator_autoupdate = 1 " auto update when buffer list changes
+let g:buffergator_show_full_directory_path = 0 " show only relative path of buffer file
+let g:buffergator_hsplit_size = 10 " buffer split size on creation
 
-" navigation between buffers
-nnoremap <C-S-Left> :bprev<CR>
-nnoremap <C-S-Right> :bnext<CR>
-
-let g:lsp_settings = {
-\   'pylsp-all': {
-\     'workspace_config': {
-\       'pylsp': {
-\         'configurationSources': ['flake8']
-\       }
-\     }
-\   },
-\}
+" open nerdtree before startify or else startify won't show up
+function Windowsetup()
+	if !argc()
+		exe "Startify"
+		exe "NERDTree"
+		exe "wincmd w"
+		exe "wincmd w"
+		exe "wincmd q"
+	endif
+	exe "BuffergatorOpen"
+	exe "wincmd w"
+	exe "wincmd w"
+endfunction
+autocmd VimEnter * call Windowsetup()	
