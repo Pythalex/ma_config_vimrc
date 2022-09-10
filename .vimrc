@@ -141,9 +141,6 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 	" delete when using leader (,) + w
 noremap <leader>w :call DeleteTrailingWS()<CR>
 
-" allow bash aliases
-set shellcmdflag=-ic
-
 " find class using grep
 func! Findclass()
 	exe "tab split"
