@@ -246,4 +246,16 @@ function Windowsetup()
 	exe "wincmd w"
 	exe "wincmd w"
 endfunction
+
 autocmd VimEnter * call Windowsetup()	
+
+" Remap control arrow to movements
+map <ESC>[1;5A <PageUp>
+map <ESC>[1;5C <C-Right>
+map <ESC>[1;5B <PageDown>
+map <ESC>[1;5D <C-Left>
+" needed for edit mode
+map! <ESC>[1;5A <PageUp>
+map! <ESC>[1;5C <C-Right>
+map! <ESC>[1;5B <PageDown>
+map! <ESC>[1;5D <C-Left>
