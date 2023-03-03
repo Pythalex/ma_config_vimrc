@@ -40,6 +40,7 @@ Plugin 'tpope/vim-sleuth' " auto detect indentation from file
 Plugin 'jeetsukumaran/vim-buffergator' " (dynamic buffer list)
 Plugin 'tpope/vim-surround' " to change surrounding characters (parenthesis, quotes)
 Plugin 'mileszs/ack.vim' " To use ack or ag
+Plugin 'itchyny/lightline.vim' " Like powerline but lighter
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
@@ -90,6 +91,9 @@ syntax on
 
 "colorscheme zenburn
 colorscheme codedark
+
+" Highlight current line
+set cursorline
 
 "change color of Selected tab
 hi TabLineSel ctermfg=Black ctermbg=Yellow
@@ -262,3 +266,6 @@ map! <ESC>[1;5A <PageUp>
 map! <ESC>[1;5C <C-Right>
 map! <ESC>[1;5B <PageDown>
 map! <ESC>[1;5D <C-Left>
+
+" Remove -- INSERT -- because  Lightline already has an 'INSERT' status bar
+set noshowmode
