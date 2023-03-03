@@ -29,7 +29,6 @@ Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'tell-k/vim-autopep8'
-Plugin 'vim-airline/vim-airline' " Status bar with cool things
 Plugin 'mhinz/vim-startify' " Startup screen on main buffer when no file is opened
 Plugin 'tomtom/quickfixsigns_vim'
 Plugin 'airblade/vim-gitgutter'
