@@ -162,7 +162,6 @@ nnoremap <leader>fc :call Findclass()<CR>
 " find method using grep
 func! Findmethod()
 	exe "tab split"
-	" exe "NERDTreeTabsOpen"
 	let classname = expand("<cword>")
 	let str = "\"def " . classname . "(\"" 
 	exe "grep -rn . -e " . str
@@ -179,10 +178,7 @@ func! GitModified()
 endfunc
 
 " use F1 to toggle Tlist
-nnoremap <F1> :Tlist <CR> <C-w>w :vertical resize +30 <CR>
-
-" use F3 to toggle nerdtree on and off
-noremap <F3> :NERDTreeToggle<CR>
+nnoremap <F1> :Tlist <CR> :wincmd h <CR> :vertical resize +30 <CR>
 
 " use leader d to open new empty tab
 noremap <leader>d :tabnew<CR>
@@ -220,16 +216,11 @@ let g:buffergator_hsplit_size = 10 " buffer split size on creation
 function Windowsetup()
 	if !argc()
 		exe "Startify"
-		exe "NERDTree"
-		exe "wincmd w"
-		exe "wincmd w"
-		exe "wincmd q"
 	endif
 	exe "BuffergatorOpen"
 	exe "wincmd w"
-	exe "wincmd w"
 endfunction
-" autocmd VimEnter * call Windowsetup()
+autocmd VimEnter * call Windowsetup()
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
