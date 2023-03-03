@@ -252,28 +252,6 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" Buffergator settings
-let g:buffergator_viewport_split_policy = "B" " horizontal bottom
-let g:buffergator_autoupdate = 1 " auto update when buffer list changes
-let g:buffergator_show_full_directory_path = 0 " show only relative path of buffer file
-let g:buffergator_hsplit_size = 10 " buffer split size on creation
-
-" open nerdtree before startify or else startify won't show up
-function Windowsetup()
-	if !argc()
-		exe "Startify"
-		exe "NERDTree"
-		exe "wincmd w"
-		exe "wincmd w"
-		exe "wincmd q"
-	endif
-	exe "BuffergatorOpen"
-	exe "wincmd w"
-	exe "wincmd w"
-endfunction
-
-autocmd VimEnter * call Windowsetup()	
-
 " Remap control arrow to movements
 map <ESC>[1;5A <PageUp>
 map <ESC>[1;5C <C-Right>
