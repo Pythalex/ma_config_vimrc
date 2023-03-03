@@ -18,9 +18,9 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/nerdtree' " Awesome file explorer
+" Plugin 'scrooloose/nerdtree' " Awesome file explorer
+" let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 Plugin 'jistr/vim-nerdtree-tabs'
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive' " All git commands with 'Git X'
 Plugin 'arcticicestudio/nord-vim'
@@ -40,6 +40,7 @@ Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'tpope/vim-sleuth' " auto detect indentation from file
 Plugin 'jeetsukumaran/vim-buffergator' " (dynamic buffer list)
 Plugin 'tpope/vim-surround' " to change surrounding characters (parenthesis, quotes)
+Plugin 'mileszs/ack.vim' " To use ack or ag
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
@@ -101,15 +102,15 @@ hi TabLineSel ctermfg=Black ctermbg=Yellow
 :let mapleader=","
 
 " Nerd tree shortcuts
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " Start NERDTree. If a file is specified, move the cursor to its window.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+" autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 
 " save with control s
 nmap <c-s> :w<cr>
@@ -144,7 +145,7 @@ noremap <leader>w :call DeleteTrailingWS()<CR>
 " find class using grep
 func! Findclass()
 	exe "tab split"
-	exe "NERDTreeTabsOpen"
+	" exe "NERDTreeTabsOpen"
 	let classname = expand("<cword>")
 	let str = "\"class " . classname . "(\"" 
 	exe "grep -rn . -e " . str
@@ -154,7 +155,7 @@ nnoremap <leader>fc :call Findclass()<CR>
 " find method using grep
 func! Findmethod()
 	exe "tab split"
-	exe "NERDTreeTabsOpen"
+	" exe "NERDTreeTabsOpen"
 	let classname = expand("<cword>")
 	let str = "\"def " . classname . "(\"" 
 	exe "grep -rn . -e " . str
@@ -223,7 +224,7 @@ function Windowsetup()
 	exe "wincmd w"
 	exe "wincmd w"
 endfunction
-autocmd VimEnter * call Windowsetup()
+" autocmd VimEnter * call Windowsetup()
 
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
