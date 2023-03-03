@@ -41,6 +41,9 @@ Plugin 'jeetsukumaran/vim-buffergator' " (dynamic buffer list)
 Plugin 'tpope/vim-surround' " to change surrounding characters (parenthesis, quotes)
 Plugin 'mileszs/ack.vim' " To use ack or ag
 Plugin 'itchyny/lightline.vim' " Like powerline but lighter
+" FZF, commands using FZF such as file search
+Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plugin 'junegunn/fzf.vim'
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
