@@ -44,6 +44,7 @@ Plugin 'itchyny/lightline.vim' " Like powerline but lighter
 " FZF, commands using FZF such as file search
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
+Plugin 'vim-scripts/taglist.vim' " Add command Tlist to get a side window with class definitions etc, to jump in code
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
@@ -177,10 +178,8 @@ func! GitModified()
 	endfor
 endfunc
 
-" use F1 to list all functions in file
-noremap <F1> :g/def\ .*<CR>
-" use F2 to list all classes in file
-noremap <F2> :g/class\ .*<CR>
+" use F1 to toggle Tlist
+nnoremap <F1> :Tlist <CR> <C-w>w :vertical resize +30 <CR>
 
 " use F3 to toggle nerdtree on and off
 noremap <F3> :NERDTreeToggle<CR>
@@ -269,6 +268,10 @@ map! <ESC>[1;5A <PageUp>
 map! <ESC>[1;5C <C-Right>
 map! <ESC>[1;5B <PageDown>
 map! <ESC>[1;5D <C-Left>
+
+" Remap F to fzf cmd Files
+nmap F :Files <CR>
+nmap D :Ag <CR>
 
 " Remove -- INSERT -- because  Lightline already has an 'INSERT' status bar
 set noshowmode
