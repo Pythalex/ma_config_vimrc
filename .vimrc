@@ -45,6 +45,7 @@ Plugin 'itchyny/lightline.vim' " Like powerline but lighter
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'vim-scripts/taglist.vim' " Add command Tlist to get a side window with class definitions etc, to jump in code
+Plugin 'Yggdroot/indentLine' " Get a line at each indentation level
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
@@ -263,6 +264,7 @@ map! <ESC>[1;5D <C-Left>
 " Remap F to fzf cmd Files
 nmap F :Files <CR>
 nmap D :Ag <CR>
+nmap L :Lines <CR>
 
 " Remove -- INSERT -- because  Lightline already has an 'INSERT' status bar
 set noshowmode
