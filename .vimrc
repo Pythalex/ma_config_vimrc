@@ -25,7 +25,6 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive' " All git commands with 'Git X'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'tomasiser/vim-code-dark' " Good color scheme
-Plugin 'nvie/vim-flake8'
 Plugin 'Vimjas/vim-python-pep8-indent'
 Plugin 'PhilRunninger/nerdtree-visual-selection'
 Plugin 'tell-k/vim-autopep8'
@@ -34,6 +33,8 @@ Plugin 'tomtom/quickfixsigns_vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'prabirshrestha/vim-lsp' " Language server protocol
 Plugin 'mattn/vim-lsp-settings' " Easy setup for most common languages
+Plugin 'hrsh7th/vim-vsnip'
+Plugin 'hrsh7th/vim-vsnip-integ'
 Plugin 'prabirshrestha/asyncomplete.vim'
 Plugin 'prabirshrestha/asyncomplete-lsp.vim'
 Plugin 'tpope/vim-sleuth' " auto detect indentation from file
@@ -46,6 +47,7 @@ Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plugin 'junegunn/fzf.vim'
 Plugin 'vim-scripts/taglist.vim' " Add command Tlist to get a side window with class definitions etc, to jump in code
 Plugin 'Yggdroot/indentLine' " Get a line at each indentation level
+Plugin 'cespare/vim-toml'
 
 "  Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 "Bundle 'Valloric/YouCompleteMe'
@@ -92,10 +94,13 @@ set encoding=utf-8
 "map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> 
 
 let python_highlight_all=1
+autocmd FileType python set colorcolumn=80,100
 syntax on
 
 "colorscheme zenburn
-colorscheme codedark
+"colorscheme codedark
+set background=light
+colorscheme solarized
 
 " Highlight current line
 set cursorline
@@ -206,7 +211,10 @@ let g:lsp_settings = {
 \     }
 \   },
 \}
-
+" Starts both servers for html files. If this line is not in vimrc, only
+" vscode server is started upon opening an html file.
+let g:lsp_settings_filetype_html = ['vscode-html-language-server', 'angular-language-server']
+ 
 " Buffergator settings
 let g:buffergator_viewport_split_policy = "B" " horizontal bottom
 let g:buffergator_autoupdate = 1 " auto update when buffer list changes
@@ -268,3 +276,12 @@ nmap L :Lines <CR>
 
 " Remove -- INSERT -- because  Lightline already has an 'INSERT' status bar
 set noshowmode
+
+" Auto pop up completion
+let g:asyncomplete_auto_popup = 1
+" Enable tab completion with asyncomplete
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" Control space to force refresh completion
+imap <c-space> <Plug>(asyncomplete_force_refresh)
